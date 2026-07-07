@@ -23,49 +23,18 @@ Risk: Without automation, this message could sit for hours unread
 text
 
 ## Architecture
-Patient Message (SMS/Text)
-│
-▼
-┌─────────────────────┐
-│ Triage Engine │
-│ (app.py) │
-└─────────┬───────────┘
-│
-▼
-┌─────────────────────┐
-│ ☁️ CLOUD PATHWAY │ ← GPT-4o-mini (Primary)
-│ 4 second timeout │
-└─────────┬───────────┘
-│
-│ ❌ Network fails or timeout?
-│
-▼
-┌─────────────────────┐
-│ 💻 LOCAL PATHWAY │ ← Ollama/Llama3.2 (Fallback)
-│ 40 second timeout │
-└─────────┬───────────┘
-│
-▼
-┌─────────────────────┐
-│ 🛡️ DEFENSIVE PROMPT │
-│ Role + CoT + │
-│ Guardrails │
-└─────────┬───────────┘
-│
-▼
-┌─────────────────────┐
-│ 📋 STRUCTURED JSON │
-│ { │
-│ "emergency": true,│
-│ "symptoms": [...],│
-│ "routing": "..." │
-│ } │
-└─────────┬───────────┘
-│
-▼
-Routing Decision
-(Ambulance / Clinic / Home Care)
 
+```mermaid
+flowchart TD
+    A[Patient Message - SMS/Text] --> B[Triage Engine - app.py]
+    B --> C{Cloud Pathway}
+    C -->|GPT-4o-mini Primary, 4s timeout| D{Network fails or timeout?}
+    D -->|Yes| E[Local Pathway: Ollama/Llama3.2 Fallback, 40s timeout]
+    D -->|No| F[Defensive Prompt: Role + CoT + Guardrails]
+    E --> F
+    F --> G["Structured JSON: emergency, symptoms, routing"]
+    G --> H[Routing Decision: Ambulance / Clinic / Home Care]
+```
 
 ## Prompt Engineering Evolution (Design Rationale)
 
@@ -208,55 +177,24 @@ Routing Decision: 🟡 MODERATE PRIORITY - URGENT_CARE_CLINIC
 
 If both cloud and local fail, system returns a hardcoded safe default routing to EMERGENCY_DISPATCH with severity 10.
 
-Operational Risks & Constraints
-Risk	Severity	Mitigation
-Internet Outages	Medium	Automatic local Ollama fallback (40s timeout) ensures operation
-Local Model Accuracy Gap	Medium	Conservative routing – local model errs toward higher severity
-JSON Parsing Failures	Low	Hardcoded safe default routes to EMERGENCY_DISPATCH
-Prompt Injection Attacks	Medium	Defensive prompt with strict role boundaries and input delimiters
-Cloud Latency in Emergencies	Low	4-second cloud timeout; local available as backup
-Patient Privacy (Cloud)	Medium	Local pathway keeps data on-device per Kenya Data Protection Act
-Model Hallucinations	Low	Multi-layer guardrails catch and block unsafe outputs
-Slow Local Inference	Medium	Timeout extended to 40s; acceptable for offline backup scenarios
-Key Design Principle
-"Better 10 false alarms than 1 missed emergency."
+###  Operational Risks & Constraints
+
+| Risk                      | Level  | Mitigation                                      |
+|---------------------------|--------|-------------------------------------------------|
+| Internet outages          | Medium | Auto-fallback to local Ollama (40s timeout)     |
+| Local model accuracy gap  | Medium | Conservative routing (biased to higher severity)|
+| JSON parsing failures     | Low    | Safe default → EMERGENCY_DISPATCH               |
+| Prompt injection          | Medium | Strict role boundaries & input delimiters       |
+| Cloud latency             | Low    | 4s cloud timeout; local backup                  |
+| Patient privacy (cloud)   | Medium | Local pathway keeps data on‑device              |
+| Model hallucinations      | Low    | Multi‑layer guardrails block unsafe output      |
+| Slow local inference      | Medium | Extended 40s timeout; acceptable offline        |
+
+
+Key Design Principle "Better 10 false alarms than 1 missed emergency."
 
 In healthcare triage, false negatives (missing emergencies) can be fatal. False positives (unnecessary alerts) are operationally manageable. The system deliberately biases toward higher sensitivity at the cost of specificity.
 
-Skills Demonstrated (NVIDIA NCA-GENL Alignment)
-Domain	Skills Applied
-Domain 1: GenAI Fundamentals	Cloud vs local architecture, model selection (GPT-4o-mini vs Llama3.2), compute requirements
-Domain 2: Prompt Engineering	Zero-shot vs few-shot, role-based orchestration, chain-of-thought reasoning, output structuring
-Domain 3: LLM Operations	Temperature control (0.0 for deterministic output), hallucination mitigation, latency constraints, defensive error safety
-
-How to Run
-Prerequisites
-bash
-# 1. Python 3.10+ installed
-# 2. Ollama installed and running locally
-# 3. OpenAI API key
-Setup
-bash
-# Clone or navigate to project folder
-cd afyaplus_capstone
-
-# Create virtual environment
-python -m venv venv
-source venv/bin/activate  # Windows: venv\Scripts\activate
-
-# Install dependencies
-pip install openai python-dotenv
-
-# Install and start Ollama (separate terminal)
-ollama serve
-ollama pull llama3.2
-
-# Create .env file
-echo "OPENAI_API_KEY=sk-your-key-here" > .env
-Run
-bash
-python app.py
-Expected output: Three test cases demonstrating cloud pathway, minor complaint handling, and forced local fallback.
 
 ### Lessons Learned (Week 1 Reflection)
 
@@ -272,31 +210,3 @@ Structured Output Enables Automation: Free-text AI responses are useless for dow
 
 Local Models Are Slower but Essential: The 34-second fallback response is acceptable when no connectivity exists. The system continues to function, and the conservative bias keeps patients safe.
 
-Built as Week 1 Capstone for AI Engineering CertificationSkills Demonstrated (NVIDIA NCA‑GENL Alignment)
-Domain	Skills Applied
-Domain 1: GenAI Fundamentals	Cloud vs local architecture, model selection (GPT‑4o‑mini vs Llama3.2), compute requirements
-Domain 2: Prompt Engineering	Zero‑shot vs few‑shot, role‑based orchestration, chain‑of‑thought reasoning, output structuring
-Domain 3: LLM Operations	Temperature control (0.0), hallucination mitigation, latency constraints, defensive error safety
-How to Run
-Prerequisites
-bash
-# 1. Python 3.10+
-# 2. Ollama installed and running
-# 3. OpenAI API key
-Setup
-bash
-cd afyaplus_capstone
-python -m venv venv
-source venv/bin/activate   # Windows: venv\Scripts\activate
-pip install openai python-dotenv
-
-# Start Ollama (separate terminal)
-ollama serve
-ollama pull llama3.2
-
-# Create .env file
-echo "OPENAI_API_KEY=sk-your-key-here" > .env
-Run
-bash
-python app.py
-Expected output: Three test cases demonstrating cloud pathway, minor complaint handling, and forced local fallback.

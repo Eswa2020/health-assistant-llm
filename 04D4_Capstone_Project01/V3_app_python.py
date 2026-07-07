@@ -10,6 +10,7 @@ import os
 import json
 import time
 import sys
+import httpx
 from datetime import datetime, timezone
 from dotenv import load_dotenv
 from openai import OpenAI, APITimeoutError, APIError, APIConnectionError
@@ -31,7 +32,7 @@ cloud_client = OpenAI(
 ollama_client = OpenAI(
     base_url="http://localhost:11434/v1",  # # Default Ollama endpoint
     api_key="ollama",  # # Placeholder - Ollama ignores this
-    timeout=40.0  # # Local can have longer timeout
+   timeout=httpx.Timeout(40.0, connect=10.0)  # total 40s, connect 10s
 )
 
 # =============================================================================
