@@ -82,7 +82,7 @@ text
 
 ## Guardrails Implemented
 
-  | Guardrail |              | Purpose |                          | Example Blocked |
+| Guardrail        |               Purpose               |             Example Blocked |
 |------------------|------------------------------------ |-----------------------------|
 | No diagnosis     | Prevents unverified medical claims  | "You have a migraine"       |
 | No prescriptions | Prevents medication recommendations | "Take ibuprofen 400mg"      |
@@ -90,6 +90,9 @@ text
 | No calculations  | Prevents incorrect clinical math    | "Your BMI is 24.3"          |
 | No markdown      | Ensures clean JSON parsing          | ` ```json ` fences          |
 | No speculation   | Sticks to described symptoms only   | "This could be cancer"      |
+
+
+
 
 ## Performance Comparison
 
@@ -111,7 +114,7 @@ text
 
 **Input:**
 "Hello AfyaPlus, I am Chidinma. I am 7 months pregnant. For the past two days,
-I have had a severe headache and my feet are suddenly very swollen.
+I have had a severe headache, and my feet are suddenly very swollen.
 I feel safe waiting for my appointment next week."
 
 text
@@ -130,7 +133,7 @@ text
   "requires_ambulance": true
 }
 Routing Decision: 🔴 CRITICAL PRIORITY - EMERGENCY_DISPATCH - 🚑 Ambulance Required
-
+```
 ### Test 2: Minor Complaint (Cloud Pathway)
 
 Input:
@@ -139,7 +142,7 @@ text
 "I have a small bruise on my knee from playing football. It doesn't hurt much."
 Output:
 
-json
+```json
 {
   "is_critical_emergency": false,
   "detected_symptoms": [
@@ -152,15 +155,15 @@ json
   "requires_ambulance": false
 }
 Routing Decision: 🟢 STANDARD PRIORITY - SELF_CARE_GUIDANCE
-
-Test 3: Forced Fallback to Local Ollama
+```
+### Test 3: Forced Fallback to Local Ollama
 Input:
 
 text
 "My child has a fever of 39°C and is very tired. We are in a village near Kilifi."
 Terminal Output (Local Ollama):
 
-text
+```json
 🔧 Forcing local Ollama pathway (testing fallback)...
    ✅ Local success (34.18s)
 
@@ -176,7 +179,7 @@ text
 Routing Decision: 🟡 MODERATE PRIORITY - URGENT_CARE_CLINIC
 
 If both cloud and local fail, system returns a hardcoded safe default routing to EMERGENCY_DISPATCH with severity 10.
-
+```
 ###  Operational Risks & Constraints
 
 | Risk                      | Level  | Mitigation                                      |
@@ -191,22 +194,22 @@ If both cloud and local fail, system returns a hardcoded safe default routing to
 | Slow local inference      | Medium | Extended 40s timeout; acceptable offline        |
 
 
-Key Design Principle "Better 10 false alarms than 1 missed emergency."
+Key Design Principle: "Better 10 false alarms than 1 missed emergency."
 
 In healthcare triage, false negatives (missing emergencies) can be fatal. False positives (unnecessary alerts) are operationally manageable. The system deliberately biases toward higher sensitivity at the cost of specificity.
 
-
+```
 ### Lessons Learned (Week 1 Reflection)
 
 Prompt Engineering is the Unit of Work: The Python code is just plumbing. The real engineering happens in the prompt design - role assignment, reasoning requirements, and guardrail definitions.
 
 Defence in Depth is Critical: Single-layer safety is not enough. We need prompt-level guardrails, output validation, JSON schema enforcement, and hardcoded fallbacks.
 
-Production Systems Must Degrade Gracefully: Networks fail. APIs timeout. The system must keep working. Automatic fallback from cloud to local ensures patients always get a response.
+Production Systems Must Degrade Gracefully: Networks fail—APIs time out. The system must keep working. Automatic fallback from cloud to local ensures patients always get a response.
 
 Healthcare AI Has Asymmetric Error Costs: Missing an emergency (false negative) can be fatal. Triggering unnecessary alerts (false positive) wastes resources. In healthcare, we optimize for the worst-case scenario.
 
 Structured Output Enables Automation: Free-text AI responses are useless for downstream systems. JSON mode transforms AI from a chatbot into a programmable API endpoint.
 
-Local Models Are Slower but Essential: The 34-second fallback response is acceptable when no connectivity exists. The system continues to function, and the conservative bias keeps patients safe.
+Local Models Are Slower but Essential: The 127-second fallback response is acceptable when no connectivity exists. The system continues to function, and the conservative bias keeps patients safe.
 
