@@ -1,0 +1,50 @@
+AfyaPlus Operational Guidelines
+
+1. Travel Reimbursement
+   All staff travel claims must be submitted within 30 days of trip completion.
+   Reimbursement is processed within 15 business days after approval.
+
+2. Procurement & Equipment Purchases
+   Clinic equipment purchases above $500 require director sign-off.
+   Any single purchase over $5,000 must go through the Central Procurement Committee.
+
+3. Clinic Shift Management
+   Night-shift staff are paid a 20% premium over the standard hourly rate.
+   Shift swaps must be approved by the ward supervisor at least 24 hours in advance.
+
+4. Medication Stock Policy
+   Critical medications (e.g., amoxicillin, paracetamol) must never drop below 50 units.
+   Stock counts are audited every Monday morning.
+
+5. Patient Referral Protocol
+   Patients with severe chest pain, difficulty breathing, or heavy bleeding must be
+   referred immediately to the nearest Level 5 hospital.
+   Routine referrals require a signed form from the attending clinician.
+
+6. Data Privacy & Security
+   All patient data must be stored on servers located within Kenya.
+   Access to sensitive records requires two-factor authentication.
+
+7. Nurse Rotation Board
+   The nursing roster is managed by the Head Nurse and updated every Friday.
+   The board is displayed in the staff room and digitally on the intranet.
+   Each nurse is assigned to one of three shifts: morning (6am-2pm), afternoon (2pm-10pm), or night (10pm-6am).
+   Off-duty days are clearly marked; a nurse may not be scheduled for more than 6 consecutive days.
+   Any changes to the roster must be approved by the Head Nurse at least 48 hours in advance.
+
+8. Doctor On-Call Board
+   The on-call schedule for doctors is maintained by the Medical Superintendent’s office.
+   It lists the primary on-call doctor and a backup for each 24-hour period.
+   Doctors on call must be reachable within 15 minutes and are prohibited from leaving the hospital premises.
+   The board also indicates which doctors are on leave or post-call rest days.
+
+9. Off Days and Extended Days
+   All clinical staff are entitled to at least one full off-day per week.
+   Doctors who work a public holiday or cover an extra shift may accrue an “extended day” which can be taken later with supervisor approval.
+   Extended days must be used within the same quarter; unused days are forfeited unless a written exemption is granted.
+
+10. Emergency Call Policy for Doctors Staying on Floor
+    During an emergency call (e.g., mass casualty, code blue), all off-duty doctors within the facility must report to their assigned floor immediately.
+    Doctors already on the floor must remain until the emergency is declared over by the Chief Medical Officer.
+    Failure to respond may result in disciplinary review.
+    The on-call doctor is responsible for coordinating the emergency response and updating the Medical Superintendent every 30 minutes.

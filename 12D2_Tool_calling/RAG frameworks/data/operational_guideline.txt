@@ -1,0 +1,50 @@
+AfyaPlus Facility‑Wide Operational Guidelines
+
+1. Pharmacy Department
+   - All prescriptions must be verified against the patient’s medical record before dispensing.
+   - Controlled substances require a double‑signature: the prescribing doctor and the pharmacist.
+   - Stock levels of essential medicines (amoxicillin, paracetamol, ORS, adrenaline) are reviewed every Monday. Re‑order point is 50 units.
+   - Expired medications are quarantined in the locked Returns cabinet and destroyed every quarter.
+   - The pharmacy operates 24/7; a pharmacist must be on‑call after 10 PM via the emergency pager.
+
+2. Billing Department
+   - Patient invoices are generated within 24 hours of discharge or service completion.
+   - Insurance claims must be submitted to NHIF or private insurers within 72 hours.
+   - Cash payments are receipted immediately; daily cash‑up is performed at 4 PM by the billing supervisor.
+   - Disputed charges are escalated to the Finance Lead and resolved within 5 business days.
+   - All billing records are archived digitally for 7 years per Kenya Health Records regulations.
+
+3. Nursing Staff
+   - The Head Nurse publishes the weekly roster every Friday. Three shifts: morning (6am‑2pm), afternoon (2pm‑10pm), night (10pm‑6am).
+   - A nurse may not work more than 6 consecutive days; at least one full off‑day per week is mandatory.
+   - Shift handover must include a structured SBAR (Situation, Background, Assessment, Recommendation) report at the bedside.
+   - Overtime is paid at 1.5× the base rate; staff must obtain supervisor approval before working beyond the scheduled shift.
+   - Shift swaps are allowed with 24‑hour notice and Head Nurse approval.
+
+4. Medical Staff (Doctors)
+   - The Medical Superintendent maintains a monthly on‑call schedule. Each day has a primary on‑call doctor and a backup.
+   - On‑call doctors must be reachable within 15 minutes and must remain on hospital premises.
+   - Post‑call rest: after a 24‑hour on‑call shift, the doctor is entitled to a full rest day without clinical duties.
+   - All patient encounters must be documented in the Electronic Medical Record (EMR) within 6 hours.
+   - Emergency call‑in: off‑duty doctors within the facility must report to their assigned floor immediately during a code blue or mass casualty.
+
+5. Laboratory Technicians
+   - Samples (blood, urine, sputum) must be labelled at the patient’s bedside with two identifiers (name and ID number).
+   - Turnaround times: urgent tests (cardiac markers, malaria smears) – 1 hour; routine tests – 4 hours.
+   - Quality control: daily calibration of machines; outliers are logged and investigated.
+   - Biohazard waste (sharps, used gloves) is disposed of in marked yellow bins and incinerated weekly.
+   - Critical values (e.g., potassium >6.0 mmol/L) are phoned immediately to the requesting clinician and documented.
+
+6. Cleaning and Janitorial Staff
+   - General cleaning: all patient rooms, corridors, and waiting areas are cleaned twice daily (7 AM and 3 PM).
+   - Terminal cleaning (discharge/deep clean) is performed after every patient is discharged or transferred.
+   - Blood or bodily fluid spills require immediate decontamination with 0.5% sodium hypochlorite solution.
+   - Waste segregation: general waste (black bags), infectious waste (yellow bags), sharps (puncture‑proof containers).
+   - Cleaners must wear appropriate PPE (gloves, aprons, closed shoes) at all times when handling waste.
+
+7. Nursing Shift‑Specific Protocols
+   - Night‑shift nurses receive a 20% premium over the base rate.
+   - A nurse working a double shift (16 hours) must have a minimum 8‑hour break before the next shift.
+   - Shift handover overlap: the incoming team arrives 15 minutes early to receive the SBAR report.
+   - Annual leave requests are submitted 30 days in advance and approved on a first‑come, first‑served basis with a maximum of 3 nurses off per shift.
+   - Sickness reporting: nurses must notify the Head Nurse at least 4 hours before their shift to arrange cover.

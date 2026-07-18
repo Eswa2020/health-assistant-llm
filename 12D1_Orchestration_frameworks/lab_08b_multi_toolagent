@@ -1,0 +1,37 @@
+# challenge4_agent_loop.py
+import os
+from dotenv import load_dotenv
+from langchain_openai import ChatOpenAI
+from langchain.agents import create_agent
+from langchain_core.tools import tool
+from langchain_core.messages import HumanMessage
+
+load_dotenv()
+
+@tool
+def get_clinic_stock_count(medication_name: str) -> str:
+    """Returns current stock for a medication at AfyaPlus."""
+    stock = {"amoxicillin": 120, "paracetamol": 540, "ibuprofen": 0}
+    return f"{stock.get(medication_name.lower(), 0)} units"
+
+@tool
+def lookup_specialist_department(specialty_name: str) -> str:
+    """Find location and status of a medical specialty department."""
+    roster = {
+        "pediatrics": "Wing A, open until 8 PM.",
+        "cardiology": "Main Tower, requires pre-booking."
+    }
+    return roster.get(specialty_name.lower(), f"No info for {specialty_name}.")
+
+llm = ChatOpenAI(model="gpt-4o-mini", temperature=0.0)
+tools = [get_clinic_stock_count, lookup_specialist_department]
+
+agent = create_agent(model=llm, tools=tools)
+
+print("=== Test 1: Stock query ===")
+result = agent.invoke({"messages": [HumanMessage(content="Do we have ibuprofen?")]})
+print(result["messages"][-1].content)
+
+print("\n=== Test 2: Specialist query ===")
+result = agent.invoke({"messages": [HumanMessage(content="Where is cardiology?")]})
+print(result["messages"][-1].content)

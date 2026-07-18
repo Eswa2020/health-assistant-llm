@@ -208,5 +208,5 @@ Healthcare AI Has Asymmetric Error Costs: Missing an emergency (false negative) 
 
 Structured Output Enables Automation: Free-text AI responses are useless for downstream systems. JSON mode transforms AI from a chatbot into a programmable API endpoint.
 
-Local Models Are Slower but Essential: The 34-second fallback response is acceptable when no connectivity exists. The system continues to function, and the conservative bias keeps patients safe.
+Local Models Are Slower but Essential: The 40-second fallback response is acceptable when no connectivity exists. The system continues to function, and the conservative bias keeps patients safe.
 

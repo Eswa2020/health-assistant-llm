@@ -1,0 +1,25 @@
+# challenge1_swahili_guardrails.py
+# Core skill (from Lab 1): isolate rules in a SystemMessage, user text in a HumanMessage.
+import os
+from dotenv import load_dotenv
+from langchain_openai import ChatOpenAI
+from langchain_core.messages import SystemMessage, HumanMessage
+
+load_dotenv()
+llm = ChatOpenAI(model="gpt-5.4-mini", temperature=0.3)
+
+messages = [
+    SystemMessage(content=(
+        "You are an AfyaPlus Health triage assistant serving patients in Kenya. "
+        "Provide clear, professional clinical guidance in English. "
+        "After your English guidance, always append exactly one warm, "
+        "localized Swahili reassurance line as a closing (for example: "
+        "'AfyaPlus iko hapa kukusaidia.'). Never mix Swahili into the "
+        "clinical content itself \u2014 the Swahili line must come last, "
+        "separate from the English guidance."
+    )),
+    HumanMessage(content="I have had a fever and body aches since yesterday. What should I do?")
+]
+
+response = llm.invoke(messages)
+print(response.content)
