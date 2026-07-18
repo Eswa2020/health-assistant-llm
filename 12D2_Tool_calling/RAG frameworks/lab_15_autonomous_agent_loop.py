@@ -21,7 +21,7 @@ config = {"callbacks": [StdOutCallbackHandler()]}
 question = "Do I need director sign-off to buy a $900 centrifuge?"
 result = agent.invoke(
     {"messages": [HumanMessage(content=question)]},
-)
+config=config)
 
 print("\n--- Final Answer ---")
 print(result["messages"][-1].content)

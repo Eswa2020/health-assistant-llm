@@ -34,7 +34,7 @@ prompt = ChatPromptTemplate.from_template(
 llm = ChatOpenAI(model="gpt-4o-mini", temperature=0.0)
 
 # 6. RAG chain (retrieve → format → prompt → LLM → text)
-rag_chain = ({"context": retriever
+rag_chain = ({"context": retriever |format_docs
               , "question": RunnablePassthrough()}
     | prompt
     | llm

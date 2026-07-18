@@ -1,4 +1,4 @@
-# mock_clinic_server.py for afyaplus 
+# lab_20_MCP_server.py for afyaplus 
 import asyncio
 from mcp.server import Server
 from mcp.server.stdio import stdio_server
